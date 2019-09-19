@@ -38,19 +38,11 @@ public class WicketServletContextHandlerExtender implements  ServletContextHandl
 
     @Override
     public void onHandlerInstalled(ServletContextHandler servletContextHandler) {
-
         Server jettyServer = servletContextHandler.getServer();
 
         wicketApplicationFactory = configurationFactory.config(WicketApplicationFactory.class, configPrefix);
 
         WebAppContext wicketAppContext = wicketApplicationFactory.createWebAppContext(jettyServer, servletContextHandler.getServletContext(), webApplicationClass);
-
-        //webApplication = wicketApplicationFactory.initFilter(wicketAppContext.getServletHandler(), wicketAppContext.getServletContext(), webApplicationClass);
-
-        /*
-        injectToWebApp(webApplication);
-
-*/
 
         HandlerCollection handlerCollection = new HandlerCollection(wicketAppContext);
 
@@ -59,16 +51,8 @@ public class WicketServletContextHandlerExtender implements  ServletContextHandl
         jettyServer.setHandler(handlerCollection);
 
         handlerCollection.setServer(jettyServer);
-
     }
 
-    private void injectToWebApp(WebApplication webApplication) {
-        try {
-            injector.injectMembers(webApplication);
-        }catch(Exception e) {
-            throw new InjectionToWicketObjectFailedException(e);
-        }
-    }
 
     public WebApplication getWebApplication() {
         return wicketApplicationFactory.getWebApplication();

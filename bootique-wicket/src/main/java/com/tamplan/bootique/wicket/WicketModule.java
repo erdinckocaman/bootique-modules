@@ -4,6 +4,7 @@ import com.google.inject.Binder;
 import com.google.inject.Injector;
 import com.google.inject.Provides;
 import com.google.inject.Singleton;
+import com.tamplan.bootique.wicket.exception.InjectionToWicketObjectFailedException;
 import io.bootique.ConfigModule;
 import io.bootique.config.ConfigurationFactory;
 import io.bootique.jetty.JettyModule;
@@ -36,8 +37,17 @@ public class WicketModule extends ConfigModule {
 
     @Provides
     @Singleton
-    public WebApplication getWebApplication(WicketServletContextHandlerExtender wicketServletContextHandlerExtender) {
-        return wicketServletContextHandlerExtender.getWebApplication();
+    public WebApplication getWebApplication(WicketServletContextHandlerExtender wicketServletContextHandlerExtender, Injector injector) {
+        return injectToWebApp(injector, wicketServletContextHandlerExtender.getWebApplication());
+    }
+
+    private WebApplication injectToWebApp(Injector injector, WebApplication webApplication) {
+        try {
+            injector.injectMembers(webApplication);
+            return webApplication;
+        }catch(Exception e) {
+            throw new InjectionToWicketObjectFailedException(e);
+        }
     }
 
 }
