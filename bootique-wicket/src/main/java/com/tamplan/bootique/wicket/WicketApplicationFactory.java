@@ -51,7 +51,7 @@ public class WicketApplicationFactory {
 
         wicketFilter = new CustomWicketFilter();
 
-        wicketFilter.setFilterPath(contextPath);
+        wicketFilter.setFilterPath("");
 
         FilterHolder wicketFilterHolder = new FilterHolder(wicketFilter);
 
