@@ -18,7 +18,7 @@ public class WicketServletContextHandlerExtender implements  ServletContextHandl
     private final String configPrefix;
     private final Class<? extends WebApplication> webApplicationClass;
     private final Injector injector;
-    private WebApplication webApplication;
+    private WicketApplicationFactory wicketApplicationFactory;
 
     public WicketServletContextHandlerExtender(
             Injector injector,
@@ -38,16 +38,19 @@ public class WicketServletContextHandlerExtender implements  ServletContextHandl
 
     @Override
     public void onHandlerInstalled(ServletContextHandler servletContextHandler) {
+
         Server jettyServer = servletContextHandler.getServer();
 
-        WicketApplicationFactory wicketApplicationFactory = configurationFactory.config(WicketApplicationFactory.class, configPrefix);
+        wicketApplicationFactory = configurationFactory.config(WicketApplicationFactory.class, configPrefix);
 
-        WebAppContext wicketAppContext = wicketApplicationFactory.createWebAppContext(jettyServer);
+        WebAppContext wicketAppContext = wicketApplicationFactory.createWebAppContext(jettyServer, servletContextHandler.getServletContext(), webApplicationClass);
 
-        webApplication = wicketApplicationFactory.initFilter(wicketAppContext.getServletHandler(), wicketAppContext.getServletContext(), webApplicationClass);
+        //webApplication = wicketApplicationFactory.initFilter(wicketAppContext.getServletHandler(), wicketAppContext.getServletContext(), webApplicationClass);
 
-
+        /*
         injectToWebApp(webApplication);
+
+*/
 
         HandlerCollection handlerCollection = new HandlerCollection(wicketAppContext);
 
@@ -68,6 +71,6 @@ public class WicketServletContextHandlerExtender implements  ServletContextHandl
     }
 
     public WebApplication getWebApplication() {
-        return webApplication;
+        return wicketApplicationFactory.getWebApplication();
     }
 }

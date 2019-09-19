@@ -37,5 +37,6 @@ public class BootiqueWicketModuleTest {
         WebApplication webApplication = runtime.getInstance(WebApplication.class);
 
         assertNotNull(webApplication);
+
     }
 }

@@ -39,4 +39,5 @@ public class WicketModule extends ConfigModule {
     public WebApplication getWebApplication(WicketServletContextHandlerExtender wicketServletContextHandlerExtender) {
         return wicketServletContextHandlerExtender.getWebApplication();
     }
+
 }

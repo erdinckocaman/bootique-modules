@@ -6,20 +6,17 @@ import org.apache.wicket.protocol.http.WebApplication;
 import org.apache.wicket.protocol.http.WicketFilter;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.FilterHolder;
-import org.eclipse.jetty.servlet.ServletHandler;
 import org.eclipse.jetty.webapp.WebAppContext;
 
 import javax.servlet.DispatcherType;
-import javax.servlet.FilterConfig;
 import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
 import java.util.EnumSet;
-import java.util.Enumeration;
-import java.util.Vector;
 
 public class WicketApplicationFactory {
 
-    private static class CustomerWicketFilter extends WicketFilter {
+    private CustomWicketFilter wicketFilter;
+
+    private static class CustomWicketFilter extends WicketFilter {
         @Override
         public WebApplication getApplication() {
             return super.getApplication();
@@ -42,7 +39,7 @@ public class WicketApplicationFactory {
         this.mode = mode;
     }
 
-    public WebAppContext createWebAppContext(Server jettyServer) {
+    public WebAppContext createWebAppContext(Server jettyServer, final ServletContext servletContext, final Class<? extends WebApplication> webApplicationClass) {
         validateContextPath(contextPath);
         validateWebContentFolder(webContentFolder);
 
@@ -52,9 +49,29 @@ public class WicketApplicationFactory {
         webAppContext.setContextPath(contextPath);
         webAppContext.setWar(webContentFolder);
 
+        wicketFilter = new CustomWicketFilter();
+
+        wicketFilter.setFilterPath(contextPath);
+
+        FilterHolder wicketFilterHolder = new FilterHolder(wicketFilter);
+
+        wicketFilterHolder.setInitParameter("applicationClassName", webApplicationClass.getName());
+        wicketFilterHolder.setName("wicket-filter");
+
+        webAppContext.addFilter(wicketFilterHolder, "/*", EnumSet.allOf(DispatcherType.class));
+
+        if ( mode == null ) {
+            mode = RuntimeConfigurationType.DEVELOPMENT;
+        }
+
+        System.setProperty("wicket." + Application.CONFIGURATION, mode.name());
+
         return webAppContext;
     }
 
+    public WebApplication getWebApplication() {
+        return wicketFilter.getApplication();
+    }
 
     private void validateWebContentFolder(String webContentFolder) {
 
@@ -63,61 +80,4 @@ public class WicketApplicationFactory {
     private void validateContextPath(String contextPath) {
     }
 
-    public WebApplication initFilter(final ServletHandler servletHandler, final ServletContext servletContext, final Class<? extends WebApplication> webApplicationClass) {
-        // setting wicket filter
-        CustomerWicketFilter wicketFilter = new CustomerWicketFilter();
-
-        wicketFilter.setFilterPath("/*");
-
-
-        if ( mode == null ) {
-            mode = RuntimeConfigurationType.DEVELOPMENT;
-        }
-
-        System.setProperty("wicket." + Application.CONFIGURATION, mode.name());
-
-        try {
-            wicketFilter.init(new FilterConfig() {
-                @Override
-                public String getFilterName() {
-                    return "wicket-filter";
-                }
-
-                @Override
-                public ServletContext getServletContext() {
-                    return servletContext;
-                }
-
-                @Override
-                public String getInitParameter(String name) {
-                    if ( "applicationClassName".equals(name)) {
-                        return webApplicationClass.getName();
-                    }else {
-                        return null;
-                    }
-                }
-
-                @Override
-                public Enumeration<String> getInitParameterNames() {
-                    Vector<String> params = new Vector<>();
-                    params.add("applicationClassName");
-
-                    return params.elements();
-                }
-            });
-        } catch (ServletException e) {
-            throw new RuntimeException(e);
-        }
-
-        FilterHolder wicketFilterHolder = new FilterHolder(wicketFilter);
-
-        servletHandler.addFilterWithMapping(
-                wicketFilterHolder,
-                "/*",
-                EnumSet.allOf(DispatcherType.class));
-
-        WebApplication application = wicketFilter.getApplication();
-
-        return application;
-    }
 }
