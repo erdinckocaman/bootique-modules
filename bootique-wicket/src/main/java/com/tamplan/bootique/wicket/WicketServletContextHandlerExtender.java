@@ -2,6 +2,7 @@ package com.tamplan.bootique.wicket;
 
 import com.google.inject.Injector;
 import com.tamplan.bootique.wicket.exception.InjectionToWicketObjectFailedException;
+import com.tamplan.bootique.wicket.impl.GuiceBeanLookup;
 import io.bootique.config.ConfigurationFactory;
 import io.bootique.jetty.server.ServletContextHandlerExtender;
 import org.apache.wicket.protocol.http.WebApplication;
@@ -34,6 +35,7 @@ public class WicketServletContextHandlerExtender implements  ServletContextHandl
         this.configPrefix = configPrefix;
         this.webApplicationClass = webApplicationClass;
         this.injector = injector;
+
     }
 
     @Override
@@ -42,7 +44,11 @@ public class WicketServletContextHandlerExtender implements  ServletContextHandl
 
         wicketApplicationFactory = configurationFactory.config(WicketApplicationFactory.class, configPrefix);
 
-        WebAppContext wicketAppContext = wicketApplicationFactory.createWebAppContext(jettyServer, servletContextHandler.getServletContext(), webApplicationClass);
+        WebAppContext wicketAppContext = wicketApplicationFactory.createWebAppContext(
+                jettyServer,
+                servletContextHandler.getServletContext(),
+                webApplicationClass,
+                new GuiceBeanLookup(injector));
 
         HandlerCollection handlerCollection = new HandlerCollection(wicketAppContext);
 

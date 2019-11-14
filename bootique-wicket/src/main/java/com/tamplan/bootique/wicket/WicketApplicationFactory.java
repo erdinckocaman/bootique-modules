@@ -9,7 +9,9 @@ import org.eclipse.jetty.servlet.FilterHolder;
 import org.eclipse.jetty.webapp.WebAppContext;
 
 import javax.servlet.DispatcherType;
+import javax.servlet.FilterConfig;
 import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
 import java.util.EnumSet;
 
 public class WicketApplicationFactory {
@@ -17,10 +19,24 @@ public class WicketApplicationFactory {
     private CustomWicketFilter wicketFilter;
 
     private static class CustomWicketFilter extends WicketFilter {
+
+        private final BeanLookup beanLookup;
+
+        public CustomWicketFilter(BeanLookup beanLookup) {
+            this.beanLookup = beanLookup;
+        }
+
+        @Override
+        public void init(boolean isServlet, FilterConfig filterConfig) throws ServletException {
+            super.init(isServlet, filterConfig);
+            this.getApplication().setMetaData(BeanLookupMetaDataKey.getInstance(), beanLookup);
+        }
+
         @Override
         public WebApplication getApplication() {
             return super.getApplication();
         }
+
     }
 
     private String contextPath;
@@ -39,7 +55,12 @@ public class WicketApplicationFactory {
         this.mode = mode;
     }
 
-    public WebAppContext createWebAppContext(Server jettyServer, final ServletContext servletContext, final Class<? extends WebApplication> webApplicationClass) {
+    public WebAppContext createWebAppContext(
+            Server jettyServer,
+            final ServletContext servletContext,
+            final Class<? extends WebApplication> webApplicationClass,
+            BeanLookup beanLookup) {
+
         validateContextPath(contextPath);
         validateWebContentFolder(webContentFolder);
 
@@ -49,7 +70,8 @@ public class WicketApplicationFactory {
         webAppContext.setContextPath(contextPath);
         webAppContext.setWar(webContentFolder);
 
-        wicketFilter = new CustomWicketFilter();
+
+        wicketFilter = new CustomWicketFilter(beanLookup);
 
         wicketFilter.setFilterPath("");
 
