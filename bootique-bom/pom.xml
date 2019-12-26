@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.tamplan.bootique</groupId>
+    <artifactId>bootique-bom</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+
+        <bootique.version>1.0</bootique.version>
+        <bootique-modules.version>1.0-SNAPSHOT</bootique-modules.version>
+        <slf4j.version>1.7.30</slf4j.version>
+        <junit.version>4.11</junit.version>
+        <jetty.version>9.4.12.v20180830</jetty.version>
+        <wicket.version>8.6.1</wicket.version>
+        <simplejavamail.version>5.5.1</simplejavamail.version>
+
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+
+            <dependency>
+                <groupId>com.tamplan.bootique</groupId>
+                <artifactId>bootique-wicket</artifactId>
+                <version>${bootique-modules.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.tamplan.bootique</groupId>
+                <artifactId>bootique-simplejavamail</artifactId>
+                <version>${bootique-modules.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.bootique.logback</groupId>
+                <artifactId>bootique-logback</artifactId>
+                <version>${bootique.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>${slf4j.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${junit.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.bootique.bom</groupId>
+                <artifactId>bootique-bom</artifactId>
+                <version>${bootique.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-webapp</artifactId>
+                <version>${jetty.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.wicket</groupId>
+                <artifactId>wicket-core</artifactId>
+                <version>${wicket.version}</version>
+            </dependency>
+
+            <!-- SimpleMail -->
+            <dependency>
+                <groupId>org.simplejavamail</groupId>
+                <artifactId>simple-java-mail</artifactId>
+                <version>${simplejavamail.version}</version>
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
+</project>

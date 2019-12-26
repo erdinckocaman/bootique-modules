@@ -3,7 +3,6 @@ package com.tamplan.bootique.examples;
 import com.google.inject.Binder;
 import com.google.inject.Provides;
 import com.google.inject.Singleton;
-import com.google.inject.name.Named;
 import com.tamplan.bootique.examples.services.SampleService;
 import com.tamplan.bootique.examples.wicket.WicketApp;
 import com.tamplan.bootique.simplejavamail.MailerRepository;
@@ -11,8 +10,6 @@ import com.tamplan.bootique.wicket.WicketModule;
 import io.bootique.BQRuntime;
 import io.bootique.Bootique;
 import io.bootique.ConfigModule;
-
-import java.io.IOException;
 
 public class BootiqueExamplesModule extends ConfigModule {
 

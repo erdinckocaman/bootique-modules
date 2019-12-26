@@ -28,7 +28,7 @@ public class SampleService {
 
         Email email = EmailBuilder.startingBlank().from("CronMaker", "cronmaker@gmail.com").to("kocamane@hotmail.com").withSubject("Deneme").withPlainText("Icerik").buildEmail();
 
-        mailer.sendMail(email);
+        //mailer.sendMail(email);
 
     }
 }
