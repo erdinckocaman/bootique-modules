@@ -13,9 +13,7 @@ public class MailerRepositoryFactory {
     public MailerRepository createMailerRepository() {
         MailerRepository mailerRepository = new MailerRepository();
 
-        accounts.forEach((name, account)->{
-            mailerRepository.addMailer(name, account);
-        });
+        accounts.forEach(mailerRepository::addMailer);
 
         return mailerRepository;
     }

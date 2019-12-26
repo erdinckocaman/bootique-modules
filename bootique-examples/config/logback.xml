@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="30 seconds">
+    <appender name="consoleAppender" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <charset>UTF-8</charset>
+            <pattern>%d{ISO8601} %-5level [%-43thread] %-50logger{50} - %msg%n</pattern>
+
+        </encoder>
+    </appender>
+
+    <root level="info">
+        <appender-ref ref="consoleAppender" />
+    </root>
+
+</configuration>

@@ -9,9 +9,21 @@ public class MailerAccount {
     private String username;
     private String password;
     private TransportStrategy transportStrategy;
+    private boolean debugMode;
 
     public MailerAccount() {
         transportStrategy = TransportStrategy.SMTP;
+    }
+
+    @Override
+    public String toString() {
+        return "MailerAccount{" +
+                "serverAddress='" + serverAddress + '\'' +
+                ", serverPort=" + serverPort +
+                ", username='" + username + '\'' +
+                ", password='" + "*" + '\'' +
+                ", transportStrategy=" + transportStrategy +
+                '}';
     }
 
     public String getServerAddress() {
@@ -48,5 +60,13 @@ public class MailerAccount {
 
     public TransportStrategy getTransportStrategy() {
         return transportStrategy;
+    }
+
+    public void setDebugMode(boolean debugMode) {
+        this.debugMode = debugMode;
+    }
+
+    public boolean isDebugMode() {
+        return debugMode;
     }
 }

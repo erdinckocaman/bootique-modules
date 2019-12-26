@@ -1,3 +1,6 @@
+log:
+  useLogbackConfig: true
+
 wicket:
   contextPath: /ui
   webContentFolder: webcontent
@@ -9,3 +12,12 @@ jetty:
       host: 0.0.0.0
       type: http
 
+simplejavamail:
+  accounts:
+    test:
+      serverAddress: smtp.gmail.com
+      serverPort: 587
+      username: x@gmail.com
+      password: x
+      transportStrategy: SMTP_TLS
+      debugMode: false
