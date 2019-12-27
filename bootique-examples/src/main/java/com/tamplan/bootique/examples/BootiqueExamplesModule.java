@@ -6,6 +6,7 @@ import com.google.inject.Singleton;
 import com.tamplan.bootique.examples.services.SampleService;
 import com.tamplan.bootique.examples.wicket.WicketApp;
 import com.tamplan.bootique.simplejavamail.MailerRepository;
+import com.tamplan.bootique.threadpool.ThreadPoolRepository;
 import com.tamplan.bootique.wicket.WicketModule;
 import io.bootique.BQRuntime;
 import io.bootique.Bootique;
@@ -18,7 +19,13 @@ public class BootiqueExamplesModule extends ConfigModule {
 
         SampleService sampleService = runtime.getInstance(SampleService.class);
 
-        sampleService.sendMail();
+        sampleService.addTaskToThreadPool();
+
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -29,8 +36,8 @@ public class BootiqueExamplesModule extends ConfigModule {
 
     @Singleton
     @Provides
-    public SampleService getSampleService(MailerRepository mailerRepository) {
-        return new SampleService(mailerRepository);
+    public SampleService getSampleService(MailerRepository mailerRepository, ThreadPoolRepository threadPoolRepository) {
+        return new SampleService(mailerRepository, threadPoolRepository);
     }
 
 }

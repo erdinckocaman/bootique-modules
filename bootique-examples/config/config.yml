@@ -21,3 +21,9 @@ simplejavamail:
       password: x
       transportStrategy: SMTP_TLS
       debugMode: false
+
+threadpool:
+  configs:
+    test:
+      minThreads: 1
+      maxThreads: 2

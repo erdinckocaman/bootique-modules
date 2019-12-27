@@ -26,6 +26,13 @@
 
     <dependencyManagement>
         <dependencies>
+
+            <dependency>
+                <groupId>com.tamplan.bootique</groupId>
+                <artifactId>bootique-threadpool</artifactId>
+                <version>${bootique-modules.version}</version>
+            </dependency>
+
             <dependency>
                 <groupId>com.tamplan.bootique</groupId>
                 <artifactId>bootique-wicket</artifactId>

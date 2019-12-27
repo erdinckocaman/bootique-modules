@@ -25,6 +25,11 @@
 
     <dependency>
       <groupId>com.tamplan.bootique</groupId>
+      <artifactId>bootique-threadpool</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>com.tamplan.bootique</groupId>
       <artifactId>bootique-wicket</artifactId>
     </dependency>
 
