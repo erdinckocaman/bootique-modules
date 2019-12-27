@@ -6,7 +6,7 @@ There are 3 modules currently. These are;
   - It is a wrapper for http://www.simplejavamail.org/
 * Wicket module
   - Module to configure Wicket framework(http://wicket.apache.org/)
-* Thread pool
+* Thread pool module
   - A simple module just to instantiate standard Java thread pools
 
 These modules can be used in bootique services or might be referenced as example bootique modules.
