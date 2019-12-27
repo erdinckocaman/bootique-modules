@@ -9,4 +9,4 @@ There are 3 modules currently. These are;
 * Thread pool
   - A simple module just to instantiate standard Java thread pools
 
-These modules can be used in bootique services or example bootique modules.
+These modules can be used in bootique services or might be references as example bootique modules.
