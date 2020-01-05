@@ -8,6 +8,7 @@ import io.bootique.jetty.server.ServletContextHandlerExtender;
 import org.apache.wicket.protocol.http.WebApplication;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.handler.HandlerCollection;
+import org.eclipse.jetty.server.handler.gzip.GzipHandler;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.webapp.WebAppContext;
 
@@ -49,6 +50,8 @@ public class WicketServletContextHandlerExtender implements  ServletContextHandl
                 servletContextHandler.getServletContext(),
                 webApplicationClass,
                 new GuiceBeanLookup(injector));
+
+        wicketAppContext.setGzipHandler(new GzipHandler());
 
         HandlerCollection handlerCollection = new HandlerCollection(wicketAppContext);
 
