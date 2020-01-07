@@ -19,7 +19,7 @@ public class MailerRepository {
         mailers = new HashMap<>();
     }
 
-    public void addMailer(String name, MailerAccount mailerAccount) {
+    protected void addMailer(String name, MailerAccount mailerAccount) {
         Objects.requireNonNull(name);
         Objects.requireNonNull(mailerAccount);
 

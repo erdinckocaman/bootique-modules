@@ -19,7 +19,7 @@ public class ThreadPoolRepository {
         });
     }
 
-    public void addThreadPool(String name, ExecutorService threadPool) {
+    protected void addThreadPool(String name, ExecutorService threadPool) {
         Objects.requireNonNull(name);
         Objects.requireNonNull(threadPool);
 
