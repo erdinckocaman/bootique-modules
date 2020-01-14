@@ -16,7 +16,7 @@ public class BootiqueExamplesModule extends ConfigModule {
 
     public static void main(String[] args){
         BQRuntime runtime = Bootique.app(args).autoLoadModules().module(BootiqueExamplesModule.class).createRuntime();
-
+/*
         SampleService sampleService = runtime.getInstance(SampleService.class);
 
         sampleService.addTaskToThreadPool();
@@ -27,6 +27,9 @@ public class BootiqueExamplesModule extends ConfigModule {
             e.printStackTrace();
         }
 
+
+ */
+        runtime.getInstance(ThreadPoolRepository.class);
     }
 
     @Override

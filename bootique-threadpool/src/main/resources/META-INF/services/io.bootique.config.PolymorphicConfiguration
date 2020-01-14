@@ -1,0 +1,3 @@
+com.tamplan.bootique.threadpool.BaseThreadPoolFactory
+com.tamplan.bootique.threadpool.PlainThreadPoolFactory
+com.tamplan.bootique.threadpool.ScheduledThreadPoolFactory

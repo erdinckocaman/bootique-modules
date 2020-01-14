@@ -25,5 +25,10 @@ simplejavamail:
 threadpool:
   configs:
     test:
+      type: plain
       minThreads: 1
       maxThreads: 2
+
+    trigger:
+      type: scheduled
+      corePoolSize: 1

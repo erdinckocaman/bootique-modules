@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.ExecutorService;
+import java.util.concurrent.ScheduledExecutorService;
 
 public class ThreadPoolRepository {
 
@@ -11,6 +12,13 @@ public class ThreadPoolRepository {
 
     public ThreadPoolRepository() {
         executors = new HashMap<>();
+    }
+
+    @Override
+    public String toString() {
+        return "ThreadPoolRepository{" +
+                "executors=" + executors +
+                '}';
     }
 
     public void shutdown() {
@@ -37,5 +45,11 @@ public class ThreadPoolRepository {
         Objects.requireNonNull(name);
 
         return executors.get(name);
+    }
+
+    public ScheduledExecutorService getScheduledExecutor(String name) {
+        Objects.requireNonNull(name);
+
+        return (ScheduledExecutorService) executors.get(name);
     }
 }

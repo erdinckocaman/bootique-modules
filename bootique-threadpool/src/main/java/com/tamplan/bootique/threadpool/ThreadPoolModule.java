@@ -6,6 +6,9 @@ import io.bootique.ConfigModule;
 import io.bootique.config.ConfigurationFactory;
 import io.bootique.log.BootLogger;
 import io.bootique.shutdown.ShutdownManager;
+import io.bootique.type.TypeRef;
+
+import java.util.Map;
 
 public class ThreadPoolModule extends ConfigModule {
 
@@ -14,11 +17,13 @@ public class ThreadPoolModule extends ConfigModule {
     public ThreadPoolRepository createThreadPoolRepository(ConfigurationFactory configurationFactory, ShutdownManager shutdownManager, BootLogger logger) {
         logger.trace(()->"Instantiating thread pool repository");
 
-        ThreadPoolRepository threadPoolRepository = configurationFactory.config(ThreadPoolRepositoryFactory.class, configPrefix).createThreadPoolRepository();
+        final ThreadPoolRepository threadPoolRepository = new ThreadPoolRepository();
 
-        shutdownManager.addShutdownHook(()->{
-            logger.trace(()->"Shutting down thread pools");
-            threadPoolRepository.shutdown();
+        Map<String, BaseThreadPoolFactory> factories = configurationFactory.config(new TypeRef<Map<String, BaseThreadPoolFactory>>() {
+        }, configPrefix + ".configs");
+
+        factories.forEach((name, factory) -> {
+            threadPoolRepository.addThreadPool(name, factory.create(name));
         });
 
         return threadPoolRepository;
