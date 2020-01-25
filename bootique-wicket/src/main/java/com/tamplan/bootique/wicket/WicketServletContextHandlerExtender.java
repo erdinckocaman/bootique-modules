@@ -53,9 +53,9 @@ public class WicketServletContextHandlerExtender implements  ServletContextHandl
 
         wicketAppContext.setGzipHandler(new GzipHandler());
 
-        HandlerCollection handlerCollection = new HandlerCollection(wicketAppContext);
+        HandlerCollection handlerCollection = new HandlerCollection(jettyServer.getHandler());
 
-        handlerCollection.addHandler(jettyServer.getHandler());
+        handlerCollection.addHandler(wicketAppContext);
 
         jettyServer.setHandler(handlerCollection);
 
