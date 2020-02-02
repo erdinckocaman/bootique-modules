@@ -18,9 +18,11 @@
         <bootique-modules.version>1.0-SNAPSHOT</bootique-modules.version>
         <slf4j.version>1.7.30</slf4j.version>
         <junit.version>4.11</junit.version>
-        <jetty.version>9.4.12.v20180830</jetty.version>
+        <jetty.version>9.4.26.v20200117</jetty.version>
         <wicket.version>8.6.1</wicket.version>
         <simplejavamail.version>5.5.1</simplejavamail.version>
+        <jdbi.version>3.9.1</jdbi.version>
+
 
     </properties>
 
@@ -88,6 +90,12 @@
                 <groupId>org.simplejavamail</groupId>
                 <artifactId>simple-java-mail</artifactId>
                 <version>${simplejavamail.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.jdbi</groupId>
+                <artifactId>jdbi3-core</artifactId>
+                <version>${jdbi.version}</version>
             </dependency>
 
         </dependencies>
