@@ -23,7 +23,6 @@
         <simplejavamail.version>5.5.1</simplejavamail.version>
         <jdbi.version>3.9.1</jdbi.version>
 
-
     </properties>
 
     <dependencyManagement>
@@ -76,6 +75,18 @@
             <dependency>
                 <groupId>org.eclipse.jetty</groupId>
                 <artifactId>jetty-webapp</artifactId>
+                <version>${jetty.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-servlet</artifactId>
+                <version>${jetty.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-server</artifactId>
                 <version>${jetty.version}</version>
             </dependency>
 
