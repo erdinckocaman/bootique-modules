@@ -73,7 +73,7 @@ public class WicketApplicationFactory {
 
         wicketFilter = new CustomWicketFilter(beanLookup);
 
-        wicketFilter.setFilterPath("");
+        wicketFilter.setFilterPath(contextPath);
 
         FilterHolder wicketFilterHolder = new FilterHolder(wicketFilter);
 
