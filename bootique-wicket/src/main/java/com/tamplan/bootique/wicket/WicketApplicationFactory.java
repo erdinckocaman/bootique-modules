@@ -80,7 +80,7 @@ public class WicketApplicationFactory {
         wicketFilterHolder.setInitParameter("applicationClassName", webApplicationClass.getName());
         wicketFilterHolder.setName("wicket-filter");
 
-        webAppContext.addFilter(wicketFilterHolder, "/*", EnumSet.allOf(DispatcherType.class));
+        webAppContext.addFilter(wicketFilterHolder, "/*", EnumSet.of(DispatcherType.REQUEST, DispatcherType.ASYNC));
 
         if ( mode == null ) {
             mode = RuntimeConfigurationType.DEVELOPMENT;
