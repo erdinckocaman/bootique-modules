@@ -1,7 +1,7 @@
 package com.tamplan.bootique.wicket.impl;
 
-import com.google.inject.Injector;
 import com.tamplan.bootique.wicket.BeanLookup;
+import io.bootique.di.Injector;
 
 public class GuiceBeanLookup implements BeanLookup {
 	

@@ -1,9 +1,8 @@
 package com.tamplan.bootique.wicket;
 
-import com.google.inject.Injector;
-import com.tamplan.bootique.wicket.exception.InjectionToWicketObjectFailedException;
 import com.tamplan.bootique.wicket.impl.GuiceBeanLookup;
 import io.bootique.config.ConfigurationFactory;
+import io.bootique.di.Injector;
 import io.bootique.jetty.server.ServletContextHandlerExtender;
 import org.apache.wicket.protocol.http.WebApplication;
 import org.eclipse.jetty.server.Server;

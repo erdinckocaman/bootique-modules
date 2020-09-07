@@ -1,12 +1,12 @@
 package com.tamplan.bootique.examples;
 
-import com.google.inject.Binder;
-import com.google.inject.Module;
 import com.tamplan.bootique.examples.wicket.WicketApp;
 import com.tamplan.bootique.wicket.WicketModule;
 import io.bootique.BQCoreModule;
 import io.bootique.BQRuntime;
 import io.bootique.command.CommandOutcome;
+import io.bootique.di.BQModule;
+import io.bootique.di.Binder;
 import io.bootique.test.junit.BQDaemonTestFactory;
 import org.apache.wicket.protocol.http.WebApplication;
 import org.junit.Rule;
@@ -22,7 +22,7 @@ public class BootiqueWicketModuleTest {
 
     @Test
     public void shouldLaunchWebApp() {
-        BQRuntime runtime = testFactory.app("--server").autoLoadModules().module(new Module() {
+        BQRuntime runtime = testFactory.app("--server").autoLoadModules().module(new BQModule() {
             @Override
             public void configure(Binder binder) {
                 BQCoreModule.extend(binder).addConfig("classpath:config_wicket.yml");

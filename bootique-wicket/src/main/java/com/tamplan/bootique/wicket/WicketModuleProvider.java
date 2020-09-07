@@ -1,7 +1,7 @@
 package com.tamplan.bootique.wicket;
 
-import com.google.inject.Module;
 import io.bootique.BQModuleProvider;
+import io.bootique.di.BQModule;
 import io.bootique.jetty.JettyModuleProvider;
 
 import java.util.Collection;
@@ -10,7 +10,7 @@ import java.util.Collections;
 public class WicketModuleProvider implements BQModuleProvider {
 
     @Override
-    public Module module() {
+    public BQModule module() {
         return new WicketModule();
     }
 

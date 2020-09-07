@@ -1,9 +1,10 @@
 package com.tamplan.bootique.examples.wicket;
 
-import com.google.inject.Inject;
 import com.tamplan.bootique.examples.services.SampleService;
 import org.apache.wicket.Page;
 import org.apache.wicket.protocol.http.WebApplication;
+
+import javax.inject.Inject;
 
 public class WicketApp extends WebApplication {
 
