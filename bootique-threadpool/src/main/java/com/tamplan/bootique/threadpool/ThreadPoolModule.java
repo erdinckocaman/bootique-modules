@@ -1,13 +1,13 @@
 package com.tamplan.bootique.threadpool;
 
-import com.google.inject.Provides;
-import com.google.inject.Singleton;
 import io.bootique.ConfigModule;
 import io.bootique.config.ConfigurationFactory;
+import io.bootique.di.Provides;
 import io.bootique.log.BootLogger;
 import io.bootique.shutdown.ShutdownManager;
 import io.bootique.type.TypeRef;
 
+import javax.inject.Singleton;
 import java.util.Map;
 
 public class ThreadPoolModule extends ConfigModule {

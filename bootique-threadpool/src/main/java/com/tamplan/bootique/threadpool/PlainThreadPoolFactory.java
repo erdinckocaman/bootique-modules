@@ -1,7 +1,6 @@
 package com.tamplan.bootique.threadpool;
 
 import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.google.common.base.Preconditions;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.LinkedBlockingQueue;
@@ -15,12 +14,12 @@ public class PlainThreadPoolFactory extends BaseThreadPoolFactory {
     private int maxThreads;
 
     public void setMinThreads(int minThreads) {
-        Preconditions.checkArgument(minThreads > 0);
+        //Preconditions.checkArgument(minThreads > 0);
         this.minThreads = minThreads;
     }
 
     public void setMaxThreads(int maxThreads) {
-        Preconditions.checkArgument(maxThreads > 0);
+        //Preconditions.checkArgument(maxThreads > 0);
         this.maxThreads = maxThreads;
     }
 
