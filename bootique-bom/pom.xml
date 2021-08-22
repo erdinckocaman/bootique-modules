@@ -17,7 +17,7 @@
         <bootique.version>2.0.B1</bootique.version>
         <bootique-modules.version>1.0-SNAPSHOT</bootique-modules.version>
         <slf4j.version>1.7.30</slf4j.version>
-        <junit.version>4.11</junit.version>
+        <junit.version>4.13.1</junit.version>
         <jetty.version>9.4.43.v20210629</jetty.version>
         <wicket.version>9.4.0</wicket.version>
         <simplejavamail.version>5.5.1</simplejavamail.version>
