@@ -1,12 +1,13 @@
 package com.tamplan.bootique.jdbi;
 
-import com.google.inject.Provides;
-import com.google.inject.Singleton;
+
 import io.bootique.ConfigModule;
 import io.bootique.config.ConfigurationFactory;
+import io.bootique.di.Provides;
 import io.bootique.jdbc.DataSourceFactory;
 import io.bootique.type.TypeRef;
 
+import javax.inject.Singleton;
 import java.util.Map;
 
 public class JdbiModule extends ConfigModule {

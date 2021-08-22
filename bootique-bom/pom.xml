@@ -14,7 +14,7 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
 
-        <bootique.version>2.0.M1</bootique.version>
+        <bootique.version>2.0.B1</bootique.version>
         <bootique-modules.version>1.0-SNAPSHOT</bootique-modules.version>
         <slf4j.version>1.7.30</slf4j.version>
         <junit.version>4.11</junit.version>
