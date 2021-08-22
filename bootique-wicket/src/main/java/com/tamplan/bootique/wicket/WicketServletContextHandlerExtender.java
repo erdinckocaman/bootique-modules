@@ -1,6 +1,6 @@
 package com.tamplan.bootique.wicket;
 
-import com.tamplan.bootique.wicket.impl.GuiceBeanLookup;
+import com.tamplan.bootique.wicket.impl.DefaultBeanLookup;
 import io.bootique.config.ConfigurationFactory;
 import io.bootique.di.Injector;
 import io.bootique.jetty.server.ServletContextHandlerExtender;
@@ -48,7 +48,7 @@ public class WicketServletContextHandlerExtender implements  ServletContextHandl
                 jettyServer,
                 servletContextHandler.getServletContext(),
                 webApplicationClass,
-                new GuiceBeanLookup(injector));
+                new DefaultBeanLookup(injector));
 
         wicketAppContext.setGzipHandler(new GzipHandler());
 

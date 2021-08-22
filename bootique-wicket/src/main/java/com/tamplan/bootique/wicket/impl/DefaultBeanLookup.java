@@ -3,11 +3,11 @@ package com.tamplan.bootique.wicket.impl;
 import com.tamplan.bootique.wicket.BeanLookup;
 import io.bootique.di.Injector;
 
-public class GuiceBeanLookup implements BeanLookup {
+public class DefaultBeanLookup implements BeanLookup {
 	
 	private Injector injector;
 
-	public GuiceBeanLookup(Injector injector) {
+	public DefaultBeanLookup(Injector injector) {
 		this.injector = injector;
 	}
 

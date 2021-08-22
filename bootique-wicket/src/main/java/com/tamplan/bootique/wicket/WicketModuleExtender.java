@@ -8,7 +8,7 @@ import org.apache.wicket.protocol.http.WebApplication;
 
 import java.util.Objects;
 
-public class WicketModuleExtender  extends ModuleExtender {
+public class WicketModuleExtender extends ModuleExtender {
 
     public WicketModuleExtender(Binder binder) {
         super(binder);
