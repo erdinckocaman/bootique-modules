@@ -1,6 +1,6 @@
 package com.tamplan.bootique.simplejavamail;
 
-import org.simplejavamail.mailer.config.TransportStrategy;
+import org.simplejavamail.api.mailer.config.TransportStrategy;
 
 public class MailerAccount {
 

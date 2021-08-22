@@ -1,6 +1,6 @@
 package com.tamplan.bootique.simplejavamail;
 
-import org.simplejavamail.mailer.Mailer;
+import org.simplejavamail.api.mailer.Mailer;
 import org.simplejavamail.mailer.MailerBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

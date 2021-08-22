@@ -2,9 +2,9 @@ package com.tamplan.bootique.examples.services;
 
 import com.tamplan.bootique.simplejavamail.MailerRepository;
 import com.tamplan.bootique.threadpool.ThreadPoolRepository;
-import org.simplejavamail.email.Email;
+import org.simplejavamail.api.email.Email;
+import org.simplejavamail.api.mailer.Mailer;
 import org.simplejavamail.email.EmailBuilder;
-import org.simplejavamail.mailer.Mailer;
 
 import java.util.Objects;
 import java.util.concurrent.ExecutorService;
