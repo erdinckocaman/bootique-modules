@@ -20,7 +20,7 @@ public class ThreadPoolModule extends ConfigModule {
         final ThreadPoolRepository threadPoolRepository = new ThreadPoolRepository();
 
         Map<String, BaseThreadPoolFactory> factories = configurationFactory.config(new TypeRef<Map<String, BaseThreadPoolFactory>>() {
-        }, configPrefix + ".configs");
+        }, configPrefix + ".pools");
 
         factories.forEach((name, factory) -> {
             threadPoolRepository.addThreadPool(name, factory.create(name));

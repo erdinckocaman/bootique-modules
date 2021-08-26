@@ -47,6 +47,12 @@
             </dependency>
 
             <dependency>
+                <groupId>com.tamplan.bootique</groupId>
+                <artifactId>bootique-jdbi</artifactId>
+                <version>${bootique-modules.version}</version>
+            </dependency>
+
+            <dependency>
                 <groupId>io.bootique.logback</groupId>
                 <artifactId>bootique-logback</artifactId>
                 <version>${bootique.version}</version>

@@ -23,7 +23,7 @@ simplejavamail:
       debugMode: false
 
 threadpool:
-  configs:
+  pools:
     test:
       type: plain
       minThreads: 1

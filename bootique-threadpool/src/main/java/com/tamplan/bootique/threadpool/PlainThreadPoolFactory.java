@@ -32,9 +32,11 @@ public class PlainThreadPoolFactory extends BaseThreadPoolFactory {
                 TimeUnit.SECONDS,
                 new LinkedBlockingQueue<Runnable>(),
                 task -> {
-                    Thread thread = new Thread(task, "BQ Thread Pool#" + name);
+                    Thread thread = new Thread(task);
 
                     thread.setDaemon(true);
+
+                    thread.setName("BQ Thread Pool-" + name + "#" + thread.getId());
 
                     return thread;
                 });
